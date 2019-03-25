@@ -21,7 +21,7 @@ namespace Piskorky
         public int RowIndex = 0;
         public int ColIndex = 0;
 
-        public int SizeArea { get => sizeArea; set => sizeArea = value; }
+        public int SizeArea { get => GetPointsToWin(); set => sizeArea = value; }
 
         public Form1()
         {
@@ -73,16 +73,82 @@ namespace Piskorky
         {
             return cbPlayer4.SelectedIndex;
         }
-
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
+               
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Vynulujem si debug lbl pre ďalšie informácie
+            lblDebug.Text = "";
 
+            //nastavím správne body
+            string tickToWint = cbWin.SelectedItem.ToString();
+            _body = int.Parse(tickToWint);
+
+
+            //Pozerám sa, či políčko je už obsadené
+            if (dgwPlayground.Rows[e.RowIndex].Cells[e.ColumnIndex].Value == null)
+            {
+                //Ak políčko nie je obsadené, idem ho obsadiť
+                switch (lastMove % _players)
+                {
+                    case 0:
+                        {
+                            dgwPlayground.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = cbPlayer1.SelectedItem;
+                            tick = cbPlayer1.SelectedItem.ToString();
+                            _playerName = "1";
+                        }
+                        break;
+                    case 1:
+                        {
+                            dgwPlayground.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = cbPlayer2.SelectedItem;
+                            tick = cbPlayer2.SelectedItem.ToString();
+                            _playerName = "2";
+                        }
+                        break;
+                    case 2:
+                        {
+                            dgwPlayground.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = cbPlayer3.SelectedItem;
+                            tick = cbPlayer3.SelectedItem.ToString();
+                            _playerName = "3";
+                        }
+                        break;
+                    case 3:
+                        {
+                            dgwPlayground.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = cbPlayer4.SelectedItem;
+                            tick = cbPlayer4.SelectedItem.ToString();
+                            _playerName = "4";
+                        }
+                        break;
+                }
+
+                //obsadenie políčka do logiky
+                int RowIndex = e.RowIndex;
+                int ColIndex = e.ColumnIndex;
+                Logic.AddTick(SizeArea, RowIndex, ColIndex, tick);
+
+                //Pozriem sa, či už hráč vyhral
+                if (Logic.CheckWin(SizeArea, tick, _body))
+                {
+                    lblDebug.Visible = true;
+                    lblDebug.ForeColor = Color.Black;
+
+                    lblDebug.Text = $"Vyhráva hráč č.{_playerName} so znakom {tick}";
+                    dgwPlayground.CancelEdit();
+                    dgwPlayground.ReadOnly = false;
+
+                }
+
+                //posuniem na ďalšieho hráča
+                lastMove++;
+                lblTick.Text = lastMove.ToString();
+            }
+
+            //ošetrenie že dané políčko je už obsadené
+            else
+            {
+                lblDebug.ForeColor = Color.Red;
+                lblDebug.Text = "Toto políčko je už obsadené";
+            }
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -106,7 +172,7 @@ namespace Piskorky
             {
                 dgwPlayground.Columns.Add("i", $"{i}");
             }
-            for (int i = 0; i < _playArea; i++)
+            for (int i = 0; i < _playArea-1; i++)
             {
                 dgwPlayground.Rows.Add();
             }

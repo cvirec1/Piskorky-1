@@ -46,6 +46,7 @@
             this.lbPlayer4 = new System.Windows.Forms.Label();
             this.lblDebug = new System.Windows.Forms.Label();
             this.lblTick = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgwPlayground)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,8 +63,9 @@
             this.dgwPlayground.RowHeadersVisible = false;
             this.dgwPlayground.RowHeadersWidth = 10;
             this.dgwPlayground.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgwPlayground.Size = new System.Drawing.Size(654, 350);
+            this.dgwPlayground.Size = new System.Drawing.Size(654, 358);
             this.dgwPlayground.TabIndex = 3;
+            this.dgwPlayground.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // cbSize
             // 
@@ -138,7 +140,7 @@
             // btnPlay
             // 
             this.btnPlay.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnPlay.Location = new System.Drawing.Point(164, 386);
+            this.btnPlay.Location = new System.Drawing.Point(164, 376);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(654, 23);
             this.btnPlay.TabIndex = 10;
@@ -155,7 +157,10 @@
             "x",
             "c",
             "v",
-            "b"});
+            "b",
+            "o",
+            "a",
+            "s"});
             this.cbPlayer1.Location = new System.Drawing.Point(838, 37);
             this.cbPlayer1.Name = "cbPlayer1";
             this.cbPlayer1.Size = new System.Drawing.Size(121, 21);
@@ -170,7 +175,10 @@
             "x",
             "c",
             "v",
-            "b"});
+            "b",
+            "o",
+            "a",
+            "s"});
             this.cbPlayer2.Location = new System.Drawing.Point(838, 134);
             this.cbPlayer2.Name = "cbPlayer2";
             this.cbPlayer2.Size = new System.Drawing.Size(121, 21);
@@ -186,7 +194,10 @@
             "x",
             "c",
             "v",
-            "b"});
+            "b",
+            "o",
+            "a",
+            "s"});
             this.cbPlayer3.Location = new System.Drawing.Point(838, 239);
             this.cbPlayer3.Name = "cbPlayer3";
             this.cbPlayer3.Size = new System.Drawing.Size(121, 21);
@@ -237,7 +248,10 @@
             "x",
             "c",
             "v",
-            "b"});
+            "b",
+            "o",
+            "a",
+            "s"});
             this.cbPlayer4.Location = new System.Drawing.Point(838, 341);
             this.cbPlayer4.Name = "cbPlayer4";
             this.cbPlayer4.Size = new System.Drawing.Size(121, 21);
@@ -261,7 +275,7 @@
             this.lblDebug.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDebug.AutoSize = true;
-            this.lblDebug.Location = new System.Drawing.Point(845, 411);
+            this.lblDebug.Location = new System.Drawing.Point(480, 402);
             this.lblDebug.Name = "lblDebug";
             this.lblDebug.Size = new System.Drawing.Size(35, 13);
             this.lblDebug.TabIndex = 19;
@@ -280,11 +294,21 @@
             this.lblTick.Text = "label1";
             this.lblTick.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(164, 406);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(109, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Step back";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 433);
+            this.ClientSize = new System.Drawing.Size(983, 441);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblTick);
             this.Controls.Add(this.lblDebug);
             this.Controls.Add(this.lbPlayer4);
@@ -330,6 +354,7 @@
         private System.Windows.Forms.Label lbPlayer4;
         private System.Windows.Forms.Label lblDebug;
         private System.Windows.Forms.Label lblTick;
+        private System.Windows.Forms.Button button1;
     }
 }
 

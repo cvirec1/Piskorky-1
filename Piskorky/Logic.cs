@@ -28,8 +28,7 @@ namespace Piskorky
                 }
             }
         }
-
-        // <summary>
+                
         /// Manuálne klikanie do hracieho poľa
         /// </summary>
         /// <param name="lenght"></param>
@@ -53,6 +52,11 @@ namespace Piskorky
             }
         }
 
+        public static void AddTick(int RowIndex, int ColIndex, string tick)
+        {
+            //vloženie ticku
+            Gameboard[RowIndex, ColIndex] = tick;
+        }
 
         public static bool CheckWin(int lenght, string tick, int body)
         {
